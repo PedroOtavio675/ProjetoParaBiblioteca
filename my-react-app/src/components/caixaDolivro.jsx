@@ -8,6 +8,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 const CaixaDoLivro = ()=>{
 
     return(
+      <div className='w-[95vw] bg-slate-200 p-2 m-2 rounded-md'>
         <div className=''>
       <Card sx={{ maxWidth: 150 }}>
       <CardActionArea>
@@ -27,6 +28,7 @@ const CaixaDoLivro = ()=>{
         </CardContent>
       </CardActionArea>
     </Card>
+    </div>
     </div>
     )
 }

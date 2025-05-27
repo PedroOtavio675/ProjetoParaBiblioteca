@@ -7,10 +7,10 @@ import BarraLateral from "./components/BarraLatral";
 
 const App = () => {
   return (
-    <div className="">
+    <div className="flex flex-col items-center">
       <BarraCima />
       <CaixaDoLivro />
-      <BarraLateral />
+      {/* <BarraLateral /> */}
     </div>
   );
 };
