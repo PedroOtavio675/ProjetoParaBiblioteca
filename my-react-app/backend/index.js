@@ -2,7 +2,9 @@ const express = require("express");
 const { Pool } = require("pg");
 const app = express();
 const port = 3000;
+const cors = require("cors")
 
+app.use(cors())
 app.use(express.json());
 
 const pool = new Pool({
@@ -30,9 +32,8 @@ app.get('/livros', async(req, res) =>{
     const dados = await pool.query(`
       SELECT * FROM livros
       `)
-
       console.log(dados.rows);
-      
+    res.json(dados.rows)
   }catch(err){
     console.log(err);
   }
