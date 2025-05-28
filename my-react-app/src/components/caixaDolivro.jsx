@@ -5,30 +5,34 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 
-const CaixaDoLivro = ()=>{
+const CaixaDoLivro = (props)=>{
 
+
+  
     return(
-      <div className='w-[95vw] bg-slate-200 p-2 m-2 rounded-md'>
-        <div className=''>
-      <Card sx={{ maxWidth: 150 }}>
+      <div className='w-[95vw] flex flex-wrap bg-slate-200 p-2 m-2 rounded-md  justify-center '>
+         {props.livros.map((item, index)=>(
+        <div key={index} className='m-2'>
+      <Card sx={{ maxWidth: 150, height:300, }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
           image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
+        
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Nome
+            {item.nome}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Autor(a)
+           {item.autor}
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
     </div>
+))}
     </div>
     )
 }
