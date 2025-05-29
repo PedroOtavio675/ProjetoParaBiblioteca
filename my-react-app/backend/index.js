@@ -3,14 +3,17 @@ const { Pool } = require("pg");
 const app = express();
 const port = 3000;
 const cors = require("cors")
+const path = require('path');
 
 app.use(cors())
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
-  database: "postgres",
+  database: "biblioteca",
   password: "admin",
   port: 5432,
 });
@@ -38,6 +41,7 @@ app.get('/livros', async(req, res) =>{
     console.log(err);
   }
 })
+
 
 
 

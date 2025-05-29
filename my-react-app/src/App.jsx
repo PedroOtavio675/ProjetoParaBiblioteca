@@ -8,37 +8,43 @@ import { useState, useEffect } from "react";
 
 const App = () => {
 
-  const [sairBarra, setSairBarra]=useState(true)
-  const aparecerBarraBotao=()=>{
-        setSairBarra(false)
-        console.log(sairBarra);
-    }
-     
-    const sairBarraBotao=()=>{
-        setSairBarra(true)
-        console.log(sairBarra);
-        console.log(livros);
-        
-    }
+  const [generoSelecionado, setGeneroSelecionado] = useState('')
 
-  const[livros, setLivros]=useState([]);
-useEffect(()=>{
-fetch('http://localhost:3000/livros')
-.then((res)=>{
-  if(!res.ok) throw new Error('erro ao buscar')
-  return res.json()
-})
-.then((data)=> setLivros(data))
-.catch((err)=> console.log(err))
-}, [])
+  const[texto,setTexto]=useState('')
   
+  const [sairBarra, setSairBarra] = useState(true)
+  const aparecerBarraBotao = () => {
+    setSairBarra(false)
+   
+  }
+
+  const sairBarraBotao = () => {
+    setSairBarra(true)
+  }
+
+  const [livros, setLivros] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/livros')
+      .then((res) => {
+        if (!res.ok) throw new Error('erro ao buscar')
+        return res.json()
+      })
+      .then((data) => setLivros(data))
+      .catch((err) => console.log(err))
+  }, [])
+
+  let valoresFiltrados;
+
   
-  
+  valoresFiltrados = livros.filter((e)=> e.genero.toLowerCase().startsWith(generoSelecionado.toLowerCase()))
+
+  valoresFiltrados = valoresFiltrados.filter((e)=> e.nome.toLowerCase().startsWith(texto.toLowerCase()))
+
   return (
     <div className="flex flex-col items-center">
-      <BarraCima aparecerBarraBotao={aparecerBarraBotao} setSairBarra={setSairBarra} sairBarra={sairBarra}/>
-      <CaixaDoLivro livros={livros}/>
-      <BarraLateral sairBarraBotao={sairBarraBotao} setSairBarra={setSairBarra} sairBarra={sairBarra}/>
+      <BarraCima setTexto={setTexto} texto={texto} aparecerBarraBotao={aparecerBarraBotao} setSairBarra={setSairBarra} sairBarra={sairBarra} />
+      <CaixaDoLivro livros={valoresFiltrados} />
+      <BarraLateral generoSelecionado={generoSelecionado}  setGeneroSelecionado={setGeneroSelecionado} sairBarraBotao={sairBarraBotao} setSairBarra={setSairBarra} sairBarra={sairBarra} />
     </div>
   );
 };

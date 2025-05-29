@@ -28,6 +28,9 @@ const CaixaDoLivro = (props)=>{
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
            {item.autor}
           </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {item.genero}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
